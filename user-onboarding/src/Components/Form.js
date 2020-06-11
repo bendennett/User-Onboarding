@@ -26,7 +26,19 @@ export default function Form() {
         terms: ""
     });
 
-    const [post, setPost] = useState();
+    const [user, setUser] = useState([])
+ const addNewUser = element => {
+   const newUser = {
+     id: Date.now(),
+     name: element.name,
+     email: element.email,
+     password: element.password
+   };
+
+   setUser([...user, newUser])
+ }
+
+    
 
     useEffect(() => {
         formSchema.isValid(formState).then(valid => {
@@ -41,8 +53,8 @@ export default function Form() {
         
         .then(res => {
             console.log("post", formState);
-            setPost(res.data);
-
+            addNewUser(res.data);
+            
         setFormState({
             name: "",
             email: "",
@@ -120,8 +132,13 @@ export default function Form() {
                 />
                 Terms of Service
             </label>
-            <pre>{JSON.stringify(post, null, 2)}</pre>
             <button disabled={buttonStop}>Submit</button>
+            {user.map((e) => (<div key={e.id}>
+                <h2>name {e.name}</h2>
+                <h2>email {e.email}</h2>
+                <h3>password {e.password}</h3>
+                
+            </div>))}
         </form>
     );
 }
