@@ -97,6 +97,7 @@ export default function Form() {
                 <input
                 type="text"
                 name="name"
+                data-cy="name"
                 value={formState.name}
                 onChange={inputChange}
                 />
@@ -107,6 +108,7 @@ export default function Form() {
                 <input
                 type="text"
                 name="email"
+                data-cy="email"
                 value={formState.email}
                 onChange={inputChange}
                 />
@@ -117,6 +119,7 @@ export default function Form() {
                 <input
                 type="password"
                 name="password"
+                data-cy="password"
                 value={formState.password}
                 onChange={inputChange}
                 />
@@ -132,11 +135,11 @@ export default function Form() {
                 />
                 Terms of Service
             </label>
-            <button disabled={buttonStop}>Submit</button>
+            <button data-cy="submit" disabled={buttonStop}>Submit</button>
             {user.map((e) => (<div key={e.id}>
-                <h2>name {e.name}</h2>
-                <h2>email {e.email}</h2>
-                <h3>password {e.password}</h3>
+                <h2>Name: {e.name}</h2>
+                <h2>Email: {e.email}</h2>
+                <h3>Password: {e.password}</h3>
                 
             </div>))}
         </form>
